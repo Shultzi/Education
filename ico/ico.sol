@@ -57,18 +57,14 @@ contract ShlomiICO is ERC20, SafeMath{
 	}
 
 	function createTokens(address recipient) payable {
-		if (msg.value == 0) {
-		  throw;
-		}
+		require (msg.value != 0);
 
 		uint tokens = safeDiv(safeMul(msg.value, price), 1 ether);
 		totalSupply = safeAdd(totalSupply, tokens);
 
 		balances[recipient] = safeAdd(balances[recipient], tokens);
 
-		if (!owner.send(msg.value)) {
-		  throw;
-		}
+		require(owner.send(msg.value));
 	}
 
 
@@ -78,10 +74,8 @@ contract ShlomiICO is ERC20, SafeMath{
 	string 	public symbol = "SCO";
 	uint 	public decimals = 3;
 	uint256 public INITIAL_SUPPLY = 10000;
-	uint256  totalSupply;
 	uint256 public price;
 	address public owner;
-	uint256 public endTime;
 
 	function ShlomiICO() {
 		totalSupply = INITIAL_SUPPLY;
