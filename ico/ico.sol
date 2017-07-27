@@ -78,10 +78,8 @@ contract ShlomiICO is ERC20, SafeMath{
 	string 	public symbol = "SCO";
 	uint 	public decimals = 3;
 	uint256 public INITIAL_SUPPLY = 10000;
-	uint256  totalSupply;
 	uint256 public price;
 	address public owner;
-	uint256 public endTime;
 
 	function ShlomiICO() {
 		totalSupply = INITIAL_SUPPLY;
